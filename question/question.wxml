@@ -1,0 +1,55 @@
+<view class = 'body iconfont'>
+  <!-- <image src='{{imageBg}}' class='back-image'></image> -->
+      
+      <view class="container-bg"> 
+        <view class="index-page {{indexPageAnim}}"></view>
+        <view class="question-main" wx:for="{{questionOpts}}" wx:for-item="qitem" wx:key="index" style="z-index:{{questionOpts.length-index}}" class=" question-main {{qitem.questionAnim}}">
+            <view class='head-waper'>
+              <image src='./actImage/{{qitem.head}}.png' class='head-image'></image>
+            </view>
+
+            <view class='title-waper'>
+              <image src='./actImage/{{qitem.title}}.png' class='title-image'></image>
+            </view>
+            
+            <view class='head-question-option'>
+              <block wx:for="{{questionOptsTitle}}" wx:for-item="item" wx:key="index">
+                <view  wx:if="{{selectIndex != index}}" class='question-option-content'>
+                  {{item}}
+                </view>
+                <view  wx:else class='question-option-content question-option-content-select'>
+                  {{item}}
+                </view>
+              </block>            
+            </view>
+            <view class='question-selection'>
+              <view wx:for="{{qitem.question}}" wx:for-item="item" wx:key="index" class='question'>
+                <view wx:if="{{selectIndex != index}}" class='question-content' bindtap='qusetionClick' data-name='{{item}}' data-index='{{index}}'>{{item}}</view>
+                <view wx:else class='question-content question-content-select' bindtap='qusetionClick' data-name='{{item}}' data-index='{{index}}'>{{item}}</view>
+              </view>
+            </view>
+            <view class='index-count'>
+              0{{index+1}}.
+            </view>
+        </view>
+        <view class='question-main ansower-main'>
+          <view class='answer-head-waper' wx:if="{{answerIndex !=6 }}">
+              <image src='./actImage/ic_answer_title.png' class='answer-head-image'></image>
+          </view>
+          <view class='answer-head-waper answer-top' wx:else>
+              <image src='./actImage/ic_answer_title.png' class='answer-head-image'></image>
+          </view>
+          <view class='answer-body'>
+              <image src='./actImage/ic_answer_{{answerIndex}}_{{index}}.png' class='answer-text-image'  wx:for="{{answerArray[answerIndex]}}" wx:for-item="item" wx:key="index" mode="widthFix"></image>
+           
+          </view>
+          <view class='index-count'>
+              05.
+          </view>
+      </view>
+      </view>
+      
+      <view class='button-wapper'>
+           <image  src='{{bottonImage}}' class='bottom-button' bindtap='continueAction' mode='scaleToFill' bindtouchstart='touchStart' bindtouchend='touchEnd'></image> 
+      </view>
+</view>
